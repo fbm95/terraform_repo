@@ -51,7 +51,6 @@ resource "google_cloudbuild_trigger" "dev_infra_tf_plan_trigger" {
       branch = ".*"
     }
   }
-
 }
 
 resource "google_cloudbuild_trigger" "dev_infra_tf_apply_trigger" {
@@ -68,5 +67,4 @@ resource "google_cloudbuild_trigger" "dev_infra_tf_apply_trigger" {
       branch = ".*"
     }
   }
-
 }
