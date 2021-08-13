@@ -11,4 +11,8 @@ resource "google_cloudbuild_trigger" "dev_app_build_deploy_trigger" {
       branch = "(dev|prod)"
     }
   }
+
+  substitutions = {
+    _REGION = var.region
+  }
 }
