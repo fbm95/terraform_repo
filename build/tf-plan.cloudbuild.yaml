@@ -1,3 +1,4 @@
+timeout: 3600s
 steps:
 - id: 'branch name'
   name: 'alpine'
@@ -31,7 +32,6 @@ steps:
           cd ../../
         done
       fi 
-# [START tf-plan]
 - id: 'tf plan'
   name: 'hashicorp/terraform:1.0.0'
   entrypoint: 'sh'
@@ -55,4 +55,3 @@ steps:
           cd ../../
         done
       fi 
-# [END tf-plan]

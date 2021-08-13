@@ -1,3 +1,4 @@
+timeout: 3600s
 steps:
 - id: 'branch name'
   name: 'alpine'
@@ -31,8 +32,6 @@ steps:
           cd ../../
         done
       fi 
-
-# [START tf-apply]
 - id: 'tf apply'
   name: 'hashicorp/terraform:1.0.0'
   entrypoint: 'sh'
@@ -47,4 +46,3 @@ steps:
         echo "Branch '$BRANCH_NAME' does not represent an oficial environment."
         echo "*******************************************************************************"
       fi
-# [END tf-apply]
