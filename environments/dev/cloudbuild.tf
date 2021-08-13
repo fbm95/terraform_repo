@@ -1,5 +1,5 @@
 resource "google_cloudbuild_trigger" "dev_app_build_deploy_trigger" {
-  project        = var.dev_project_id
+  project        = var.project_id
   name           = "dev-app-build-deploy"
   description    = "Build and deploy the app"
   filename       = "cloudbuild.yaml"
