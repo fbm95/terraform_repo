@@ -10,8 +10,7 @@ resource "google_project_service" "dev_googleapis_enable" {
   project = var.dev_project_id
   for_each = toset([
     "cloudbuild.googleapis.com",
-    "compute.googleapis.com",
-    "run.googleapis.com"
+    "compute.googleapis.com"
   ])
   service = each.value
   disable_on_destroy = false
