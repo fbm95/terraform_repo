@@ -47,7 +47,7 @@ resource "google_cloudbuild_trigger" "dev_infra_tf_plan_trigger" {
   github {
     owner   = "fbm95"
     name    = "terraform_repo"
-    push {
+    pull_request {
       branch = ".*"
     }
   }
