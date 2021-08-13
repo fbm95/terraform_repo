@@ -9,6 +9,7 @@ module "dev_terraform_state_bucket" {
 resource "google_project_service" "dev_googleapis_enable" {
   project = var.dev_project_id
   for_each = toset([
+    "cloudresourcemanager.googleapis.com",
     "cloudbuild.googleapis.com",
     "compute.googleapis.com"
   ])
