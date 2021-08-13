@@ -53,3 +53,20 @@ resource "google_cloudbuild_trigger" "dev_infra_tf_plan_trigger" {
   }
 
 }
+
+resource "google_cloudbuild_trigger" "dev_infra_tf_apply_trigger" {
+  project        = var.dev_project_id
+  name           = "dev-infra-tf-apply"
+  description    = "Terraform apply for dev infrastructure"
+  filename       = "build/tf-apply.cloudbuild.yaml"
+  depends_on     = [google_project_service.dev_googleapis_enable]
+
+  github {
+    owner   = "fbm95"
+    name    = "terraform_repo"
+    push {
+      branch = ".*"
+    }
+  }
+
+}
