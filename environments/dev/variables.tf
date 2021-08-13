@@ -10,7 +10,3 @@ variable "project_id" {
 variable "env_name" {
   description = "Environment name"
 }
-
-variable "subnet_cidr_range" {
-  description = "CIDR range for subnet"
-}
