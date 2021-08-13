@@ -1,7 +1,6 @@
 resource "google_project_service" "dev_project_googleapis_enable" {
   project = var.project_id
   for_each = toset([
-    "cloudresourcemanager.googleapis.com",
     "run.googleapis.com"
   ])
   service = each.value
