@@ -65,7 +65,7 @@ resource "google_cloudbuild_trigger" "dev_infra_tf_apply_trigger" {
     owner   = "fbm95"
     name    = "terraform_repo"
     push {
-      branch = ".*"
+      branch = "(dev|prod)"
     }
   }
 
