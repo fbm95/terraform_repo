@@ -10,3 +10,7 @@ variable "project_id" {
 variable "env_name" {
   description = "Environment name"
 }
+
+variable "dev_artifacts_bucket" {
+  description = "Cloudbuild artifacts bucket name for dev environment"
+}

@@ -13,6 +13,7 @@ resource "google_cloudbuild_trigger" "dev_app_build_deploy_trigger" {
   }
 
   substitutions = {
-    _REGION = var.region
+    _REGION           = var.region
+    _ARTIFACTS_BUCKET = var.dev_artifacts_bucket
   }
 }
