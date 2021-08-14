@@ -6,6 +6,14 @@ module "dev_terraform_state_bucket" {
   force_destroy = true
 }
 
+module "dev_cloudbuild_artifacts_bucket" {
+  source        = "github.com/terraform-google-modules/terraform-google-cloud-storage///modules/simple_bucket?ref=v2.1.0"
+  name          = "bfusa-dev-cb-artifacts"
+  project_id    = var.dev_project_id
+  location      = var.bucket_location
+  force_destroy = true
+}
+
 resource "google_project_service" "dev_googleapis_enable" {
   project = var.dev_project_id
   for_each = toset([
@@ -27,6 +35,16 @@ resource "google_storage_bucket_iam_member" "dev_cb_tfstate_iam" {
   member = "serviceAccount:${data.google_project.dev_project.number}@cloudbuild.gserviceaccount.com"
   depends_on = [
     module.dev_terraform_state_bucket,
+    google_project_service.dev_googleapis_enable
+  ]
+}
+
+resource "google_storage_bucket_iam_member" "dev_cb_artifacts_iam" {
+  bucket = module.dev_cloudbuild_artifacts_bucket.bucket.name
+  role   = "roles/storage.admin"
+  member = "serviceAccount:${data.google_project.dev_project.number}@cloudbuild.gserviceaccount.com"
+  depends_on = [
+    module.dev_cloudbuild_artifacts_bucket,
     google_project_service.dev_googleapis_enable
   ]
 }
