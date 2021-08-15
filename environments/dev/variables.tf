@@ -16,7 +16,7 @@ variable "dev_artifacts_bucket" {
 }
 
 variable "subnetworks" {
-  type = list(object({
+  type = map(object({
     subnet_region     = string
     subnet_cidr_range = string
   }))
