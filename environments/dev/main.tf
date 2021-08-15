@@ -1,7 +1,8 @@
 resource "google_project_service" "dev_project_googleapis_enable" {
   project = var.project_id
   for_each = toset([
-    "run.googleapis.com"
+    "run.googleapis.com",
+    "iam.googleapis.com"
   ])
   service = each.value
   disable_on_destroy = false
