@@ -21,7 +21,7 @@ resource "google_compute_instance" "wordpress" {
   }
 
   network_interface {
-    network    = module.dev_network.network_name
+    network    = module.dev_network.network.name
     subnetwork = module.dev_network.subnetworks["us-central1"].self_link
 
     access_config {
