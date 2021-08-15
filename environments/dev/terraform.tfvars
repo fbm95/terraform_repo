@@ -11,4 +11,5 @@ subnetworks          = {
   "subnet2" = {
     subnet_region     = "us-central1"
     subnet_cidr_range = "10.2.0.0/24"
-  }]
+  }
+}
