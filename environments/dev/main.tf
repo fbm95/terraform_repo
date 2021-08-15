@@ -17,7 +17,7 @@ resource "google_compute_instance" "wordpress" {
 
   boot_disk {
     initialize_params {
-      image = "debian-cloud/debian-10"
+      image = "ubuntu-os-cloud/ubuntu-2004-focal-v20210720"
     }
   }
 
