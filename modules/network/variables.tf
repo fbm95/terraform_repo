@@ -11,10 +11,6 @@ variable "env_name" {
   description = "Environment name"
 }
 
-variable "subnet_cidr_range" {
-  description = "CIDR range for subnet"
-}
-
 variable "subnetworks" {
   type = map(object({
     subnet_region     = string
