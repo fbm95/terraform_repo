@@ -8,24 +8,6 @@ resource "google_project_service" "dev_project_googleapis_enable" {
   disable_on_destroy = false
 }
 
-module "dev_network" {
-  source            = "../../modules/network"
-  project_id        = var.project_id
-  region            = var.region
-  env_name          = var.env_name
-  subnetworks       = var.subnetworks
-}
-
-resource "google_service_account" "wordpress_sa" {
-  project = var.project_id
-  account_id   = "wordpress-sa"
-  display_name = "Wordpress Service Account"
-}
-
-output "subnet" {
-  value = module.dev_network.subnetworks
-}
-
 resource "google_compute_instance" "wordpress" {
   project      = var.project_id
   name         = "wordpress"
@@ -52,3 +34,4 @@ resource "google_compute_instance" "wordpress" {
     scopes = ["cloud-platform"]
   }
 }
+
