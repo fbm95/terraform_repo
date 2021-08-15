@@ -1,27 +1,16 @@
 resource "google_project_service" "dev_project_googleapis_enable" {
   project = var.project_id
   for_each = toset([
-    "run.googleapis.com"
+    "run.googleapis.com",
+    "iam.googleapis.com",
+    "iap.googleapis.com"
   ])
   service = each.value
   disable_on_destroy = false
 }
 
-module "dev_network" {
-  source            = "../../modules/network"
-  project_id        = var.project_id
-  region            = var.region
-  env_name          = var.env_name
-  subnetworks       = var.subnetworks
-}
-
-resource "google_service_account" "wordpress_sa" {
-  project = var.project_id
-  account_id   = "wordpress-sa"
-  display_name = "Wordpress Service Account"
-}
-
-resource "google_compute_instance" "default" {
+resource "google_compute_instance" "wordpress" {
+  project      = var.project_id
   name         = "wordpress"
   machine_type = "f1-micro"
   zone         = "us-central1-a"
@@ -32,13 +21,9 @@ resource "google_compute_instance" "default" {
     }
   }
 
-  // Local SSD disk
-  scratch_disk {
-    interface = "SCSI"
-  }
-
   network_interface {
-    network = module.dev_network.network_name
+    network    = module.dev_network.network.name
+    subnetwork = module.dev_network.subnetworks["us-central1"].self_link
 
     access_config {
       // Ephemeral IP automatic assignment
@@ -50,3 +35,4 @@ resource "google_compute_instance" "default" {
     scopes = ["cloud-platform"]
   }
 }
+
