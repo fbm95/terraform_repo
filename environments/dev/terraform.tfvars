@@ -4,11 +4,11 @@ env_name             = "dev"
 dev_artifacts_bucket = "bfusa-dev-cb-artifacts"
 
 subnetworks          = {
-  "subnet1" = {
+  "europe-west1" = {
     subnet_region     = "europe-west1"
     subnet_cidr_range = "10.1.0.0/24"
   },
-  "subnet2" = {
+  "us-central1" = {
     subnet_region     = "us-central1"
     subnet_cidr_range = "10.2.0.0/24"
   }

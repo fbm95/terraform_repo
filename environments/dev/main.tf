@@ -22,7 +22,12 @@ resource "google_service_account" "wordpress_sa" {
   display_name = "Wordpress Service Account"
 }
 
-resource "google_compute_instance" "default" {
+output "subnet" {
+  value = module.dev_network.subnetworks
+}
+
+resource "google_compute_instance" "wordpress" {
+  project      = var.project_id
   name         = "wordpress"
   machine_type = "f1-micro"
   zone         = "us-central1-a"
@@ -33,13 +38,9 @@ resource "google_compute_instance" "default" {
     }
   }
 
-  // Local SSD disk
-  scratch_disk {
-    interface = "SCSI"
-  }
-
   network_interface {
-    network = module.dev_network.network_name
+    network    = module.dev_network.network_name
+    subnetwork = module.dev_network.subnetworks["us-central1"].self_link
 
     access_config {
       // Ephemeral IP automatic assignment
