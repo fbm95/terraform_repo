@@ -14,3 +14,11 @@ variable "env_name" {
 variable "dev_artifacts_bucket" {
   description = "Cloudbuild artifacts bucket name for dev environment"
 }
+
+variable "subnetworks" {
+  type = list(object({
+    subnet_region     = string
+    subnet_cidr_range = string
+  }))
+  description = "Map containing subnet definition"
+}

@@ -14,3 +14,11 @@ variable "env_name" {
 variable "subnet_cidr_range" {
   description = "CIDR range for subnet"
 }
+
+variable "subnetworks" {
+  type = list(object({
+    subnet_region     = string
+    subnet_cidr_range = string
+  }))
+  description = "Map containing subnet definition"
+}
