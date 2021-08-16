@@ -15,9 +15,15 @@ resource "google_compute_instance" "wordpress" {
   machine_type = "f1-micro"
   zone         = "us-central1-a"
 
+  # scratch_disk {
+  #   interface = "NVME"
+  # }
+
   boot_disk {
     initialize_params {
       image = "ubuntu-os-cloud/ubuntu-2004-focal-v20210720"
+      size = 10
+      type = "pd-ssd"
     }
   }
 
